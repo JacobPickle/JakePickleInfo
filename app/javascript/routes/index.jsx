@@ -9,17 +9,21 @@ import NewPurchase from "../components/purchases/NewPurchase";
 import Items from "../components/items/Items";
 import Item from "../components/items/Item";
 import Home from "../components/Home";
+import Budget from "../components/Budget";
 import About from "../components/About";
 import Resume from "../components/Resume";
 import Settings from "../components/Settings";
 import StoreTypes from "../components/store_types/StoreTypes"
 import StoreType from "../components/store_types/StoreType"
 import NewStoreType from "../components/store_types/NewStoreType"
+import NewUser from "../components/users/NewUser"
+import Login from "../components/users/Login"
 
 export default (
   <Router>
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/Budget" element={<Budget />} />
       <Route path="/About" element={<About />} />
       <Route path="/Resume" element={<Resume />} />
       <Route path="/stores" element={<Stores />} />
@@ -34,6 +38,8 @@ export default (
       <Route path="/items" element={<Items />} />
       <Route path="/item/:id" element={<Item />} />
       <Route path="/settings/" element={<Settings />} />
+      <Route path="/user" element={<NewUser />} />
+      <Route path="/login" element={<Login />} />
     </Routes>
   </Router>
 );
