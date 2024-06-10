@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import Cookies from 'universal-cookie';
 import Sidebar from "./Sidebar";
 
 const Settings = () => {
     const navigate = useNavigate();
+    const cookies = new Cookies();
     const [budget, setBudget] = useState([]);
     const [weeks, setWeeks] = useState([]);
 
@@ -12,43 +14,26 @@ const Settings = () => {
     }, []);
 
     async function getSettings() {
-        const url = `/api/v1/settings/weeks`;
+        const url = `/api/v1/users/show_budgeting_preferences/${cookies.get("token")}`;
         await fetch(url)
         .then((response) => {
             if (response.ok) 
             {
                 return response.json();
             }
-            else 
+            else
             {
                 throw new Error("Network response was not ok.");
             }
                 
          })
         .then((response) => {
-            document.getElementById("weeks").value = response;
-            setWeeks(response);
+            document.getElementById("weeks").value = response.weeks_preference;
+            setWeeks(response.weeks_preference);
+            document.getElementById("budget").value = response.budget_preference;
+            setBudget(response.budget_preference);
         })
-        .catch(() => navigate("/Settings"));
-
-        const budget_url = `/api/v1/settings/budget`;
-        await fetch(budget_url)
-        .then((response) => {
-            if (response.ok) 
-            {
-                return response.json();
-            }
-            else 
-            {
-                throw new Error("Network response was not ok.");
-            }
-                
-         })
-        .then((response) => {
-            document.getElementById("budget").value = response;
-            setBudget(response);
-        })
-        .catch(() => navigate("/Settings"));
+        .catch(() => navigate("/"));
     }
 
     const onChange = (event, setFunction) => {
@@ -57,11 +42,12 @@ const Settings = () => {
     
     const onSubmit = (event) => {
         event.preventDefault();
-        const url = "/api/v1/settings/create";
+        const url = "/api/v1/users/update_budgeting_preferences";
     
         const body = {
-            budget,
-            weeks
+            user_token: cookies.get("token"),
+            budget_preference: budget,
+            weeks_preference: weeks,
         };
     
         const token = document.querySelector('meta[name="csrf-token"]').content;
@@ -79,7 +65,6 @@ const Settings = () => {
             }
             throw new Error("Network response was not ok.");
         })
-        .then((response) => navigate(`/`))
         .catch((error) => console.log(error.message));
     };
 

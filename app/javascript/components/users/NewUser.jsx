@@ -21,6 +21,14 @@ const NewUser = () => {
     function onSubmit (event) {
         event.preventDefault();
         const url = "/api/v1/users/create";
+
+        const body = {
+            username: formData.username,
+            password: formData.password,
+            password_confirmation: formData.password_confirmation,
+            weeks_preference: 4,
+            budget_preference: 200,
+        };
         
         const token = document.querySelector('meta[name="csrf-token"]').content;
         fetch(url, {
@@ -29,7 +37,7 @@ const NewUser = () => {
                 "X-CSRF-Token": token,
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(formData),
+            body: JSON.stringify(body),
         })
         .then((response) => {
             if (response.ok) {

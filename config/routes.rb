@@ -29,7 +29,9 @@ Rails.application.routes.draw do
       get 'users/index'
       get 'users/index_by_token/:user_token', to: 'users#index_by_token'
       get 'users/show/:username/:password', to: 'users#show'
+      get 'users/show_budgeting_preferences/:user_token', to: 'users#show_budgeting_preferences'
       post 'users/create'
+      post 'users/update_budgeting_preferences', to: 'users#update_budgeting_preferences' 
     end
   end
   root 'homepage#index'

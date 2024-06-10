@@ -27,10 +27,24 @@ module Api
         end
       end
 
+      def show_budgeting_preferences
+        user = User.find_by(token: params[:user_token])
+        if user
+          render json: User.where(token: params[:user_token]).select(:weeks_preference, :budget_preference).take
+        end
+      end
+
+      def update_budgeting_preferences
+        user = User.find_by(token: params[:user_token])
+        if user
+          user.update(weeks_preference: params[:weeks_preference], budget_preference: params[:budget_preference])
+        end
+      end
+
       private
 
       def user_params
-        params.permit(:username, :password, :password_confirmation)
+        params.permit(:username, :password, :password_confirmation, :weeks_preference, :budget_preference)
       end
     end
   end

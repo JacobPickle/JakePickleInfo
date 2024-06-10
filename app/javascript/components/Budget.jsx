@@ -15,7 +15,7 @@ const Home = () => {
     }, []);
 
     async function getSettings() {
-        const url = `/api/v1/settings/weeks`;
+        const url = `/api/v1/users/show_budgeting_preferences/${cookies.get("token")}`;
         await fetch(url)
         .then((response) => {
             if (response.ok) 
@@ -29,27 +29,9 @@ const Home = () => {
                 
          })
         .then((response) => {
-            setWeeks(response);
+            setWeeks(response.weeks_preference);
+            setBudget(response.budget_preference);
         })
-        .catch(() => useNavigate("/"));
-
-        const budget_url = `/api/v1/settings/budget`;
-        await fetch(budget_url)
-        .then((response) => {
-            if (response.ok) 
-            {
-                return response.json();
-            }
-            else
-            {
-                throw new Error("Network response was not ok.");
-            }
-                
-         })
-        .then((response) => {
-            setBudget(response);
-        })
-        .catch(() => useNavigate("/"));
 
         const total_spent_url = `/api/v1/purchases/recent_total/${cookies.get("token")}`;
         await fetch(total_spent_url)
@@ -67,7 +49,22 @@ const Home = () => {
         .then((response) => {
             setTotalSpending(response);
         })
-        .catch(() => useNavigate("/"));
+    }
+
+    if(!cookies.get("token"))
+    {
+        return (
+            <>
+                <Sidebar></Sidebar>
+                <div className="main">
+                    <main>
+                        <p>Please login to use the budgeting app.</p>
+                        <div><Link to="/login">Login</Link></div>
+                        <div><Link to="/user">Create User</Link></div>
+                    </main>
+                </div>
+            </>
+        )
     }
 
     return (

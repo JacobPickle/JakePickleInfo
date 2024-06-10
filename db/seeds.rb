@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # User A
-test_user_a = User.create(username: 'testa', password: 'testa')
+test_user_a = User.create(username: 'testa', password: 'testa', weeks_preference: 4, budget_preference: 200)
 
 # Store Types A
 grocery_a = StoreType.create(name: 'Grocery_a', user: test_user_a)
@@ -96,7 +96,7 @@ Item.create(name: 'tacos', price: 25.22, purchase: purch, user: test_user_a)
 Item.create(name: 'tacos', price: 2.99, purchase: purch, user: test_user_a)
 
 # User B
-test_user_b = User.create(username: 'testb', password: 'testb')
+test_user_b = User.create(username: 'testb', password: 'testb', weeks_preference: 4, budget_preference: 200)
 
 # Store Types B
 grocery_b = StoreType.create(name: 'Grocery_b', user: test_user_b)
