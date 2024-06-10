@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Cookies from 'universal-cookie';
 import Sidebar from "../Sidebar";
 
 const NewStore = () => {
     const navigate = useNavigate();
+    const cookies = new Cookies();
     const [name, setName] = useState("");
     const [storeTypes, setStoreTypes] = useState("");
     const [store_type_id, setStoreType] = useState("");
 
     useEffect(() => {
-        const url = "/api/v1/store_types/index";
+        const url = `/api/v1/store_types/index/${cookies.get("token")}`;
         fetch(url)
           .then((res) => {
             if (res.ok) {
@@ -38,7 +40,8 @@ const NewStore = () => {
     
         const body = {
             name,
-            store_type_id
+            store_type_id,
+            user_token: cookies.get("token"),
         };
     
         const token = document.querySelector('meta[name="csrf-token"]').content;

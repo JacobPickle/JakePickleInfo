@@ -10,7 +10,7 @@ module Api
       end
 
       def create
-        item = Item.create!(item_params)
+        item = Item.create!({name: params[:name], price: params[:price], purchase_id: params[:purchase_id], user_id: User.find_by(token: params[:user_token]).id})
         if item
           render json: item
         else
@@ -32,10 +32,6 @@ module Api
       end
 
       private
-
-      def item_params
-        params.permit(:name, :price, :purchase_id)
-      end
 
       def set_item
         @item = Item.find(params[:id])

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Cookies from 'universal-cookie';
 
 const PurchaseList = ({recent}) => {
     const navigate = useNavigate();
@@ -7,9 +8,10 @@ const PurchaseList = ({recent}) => {
     const [filteredPurchases, setFilteredPurchases] = useState([]);
     const [stores, setStores] = useState([]);
     const [storeTypes, setStoreTypes] = useState([]);
-    const [storeFilter, setStoreFilter] = useState([]);
-    const [storeTypeFilter, setStoreTypeFilter] = useState([]);
+    const [storeFilter, setStoreFilter] = useState();
+    const [storeTypeFilter, setStoreTypeFilter] = useState();
     const dayjs = require('dayjs')
+    const cookies = new Cookies();
     var localizedFormat = require('dayjs/plugin/localizedFormat')
     dayjs.extend(localizedFormat)
 
@@ -22,10 +24,10 @@ const PurchaseList = ({recent}) => {
     async function getPurchases(){
         url = "";
         if(recent) {
-            url = "/api/v1/purchases/recent";
+            url = `/api/v1/purchases/recent/${cookies.get("token")}`;
         }
         else {
-            url = "/api/v1/purchases/index";
+            url = `/api/v1/purchases/index/${cookies.get("token")}`;
         }
         await fetch(url)
           .then((res) => {
@@ -39,7 +41,7 @@ const PurchaseList = ({recent}) => {
     };
 
     async function getStores(){
-        const storeurl = "/api/v1/stores/index";
+        const storeurl = `/api/v1/stores/index/${cookies.get("token")}`;
         await fetch(storeurl)
           .then((res) => {
             if (res.ok) {
@@ -52,7 +54,7 @@ const PurchaseList = ({recent}) => {
     };
 
     async function getStoreTypes(){
-        const type_url = "/api/v1/store_types/index";
+        const type_url = `/api/v1/store_types/index/${cookies.get("token")}`;
         fetch(type_url)
             .then((res) => {
             if (res.ok) {
@@ -131,12 +133,12 @@ const PurchaseList = ({recent}) => {
     return (
         <div>
             <form>
-                <select className="form-select form-control" defaultValue={'DEFAULT'} value={storeFilter} onChange={(event) => onChangeStore(event)}>
-                    <option value="DEFAULT">No Store filter Selected</option>
+                <select className="form-select form-control" value={storeFilter} onChange={(event) => onChangeStore(event)}>
+                    <option>No Store filter Selected</option>
                     {storeOptions}
                 </select>
-                <select className="form-select form-control" defaultValue={'DEFAULT'} value={storeTypeFilter} onChange={(event) => onChangeStoreType(event)}>
-                    <option value="DEFAULT">No Store Type filter Selected</option>
+                <select className="form-select form-control" value={storeTypeFilter} onChange={(event) => onChangeStoreType(event)}>
+                    <option>No Store Type filter Selected</option>
                     {storeTypeOptions}
                 </select>
             </form>

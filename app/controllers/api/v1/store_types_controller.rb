@@ -6,12 +6,12 @@ module Api
         before_action :set_store, only: %i[show destroy]
   
         def index
-          storeTypes = StoreType.all.order(created_at: :desc)
+          storeTypes = StoreType.all.where(:user_id => (User.where(token: params[:user_token]))).order(created_at: :desc)
           render json: storeTypes
         end
   
         def create
-          storeType = StoreType.create!(store_type_params)
+          storeType = StoreType.create!({name: params[:name], user_id: User.find_by(token: params[:user_token]).id})
           if storeType
             render json: storeType
           else
@@ -28,10 +28,6 @@ module Api
         end
   
         private
-  
-        def store_type_params
-          params.permit(:name)
-        end
   
         def set_store
           @StoreType = StoreType.find(params[:id])

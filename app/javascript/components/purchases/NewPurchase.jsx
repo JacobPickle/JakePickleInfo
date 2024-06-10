@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Cookies from 'universal-cookie';
 import Sidebar from "../Sidebar";
 
 const NewPurchase = () => {
     const navigate = useNavigate();
+    const cookies = new Cookies();
     const [purchase_date, setPurchaseDate] = useState("");
     const [total, setTotal] = useState("");
     const [store_id, setStore] = useState("");
     const [stores, setStores] = useState("");
 
     useEffect(() => {
-        const url = "/api/v1/stores/index";
+        const url = `/api/v1/stores/index/${cookies.get("token")}`;
         fetch(url)
           .then((res) => {
             if (res.ok) {
@@ -37,7 +39,8 @@ const NewPurchase = () => {
         const body = {
             total,
             purchase_date,
-            store_id
+            store_id,
+            user_token: cookies.get("token"),
         };
     
         const token = document.querySelector('meta[name="csrf-token"]').content;

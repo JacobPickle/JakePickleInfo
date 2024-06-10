@@ -3,18 +3,18 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      get 'purchases/index'
-      get 'purchases/recent'
-      get 'purchases/recent_total'
+      get 'purchases/index/:user_token', to: 'purchases#index'
+      get 'purchases/recent/:user_token', to: 'purchases#recent'
+      get 'purchases/recent_total/:user_token', to: 'purchases#recent_total'
       post 'purchases/create'
       get 'purchases/show/:id', to: 'purchases#show'
       get 'purchases/show_by_store/:store_id', to: 'purchases#show_by_store_id'
       delete 'purchases/destroy/:id', to: 'purchases#destroy'
-      get 'store_types/index'
+      get 'store_types/index/:user_token', to: 'store_types#index'
       post 'store_types/create'
       get 'store_types/show/:id', to: 'store_types#show'
       delete 'store_types/destroy/:id', to: 'store_types#destroy'
-      get 'stores/index'
+      get 'stores/index/:user_token', to: 'stores#index'
       post 'stores/create'
       get '/stores/show/:id', to: 'stores#show'
       delete '/stores/destroy/:id', to: 'stores#destroy'

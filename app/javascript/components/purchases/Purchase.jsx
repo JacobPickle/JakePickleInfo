@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import Cookies from 'universal-cookie';
 import Sidebar from "../Sidebar";
 
 const Purchase = () => {
     const params = useParams();
     const navigate = useNavigate();
+    const cookies = new Cookies();
     const [purchase, setPurchase] = useState([]);
     const [name, setName] = useState([]);
     const [price, setPrice] = useState([]);
@@ -52,7 +54,7 @@ const Purchase = () => {
         )
         .catch(() => navigate("/purchases"));
         
-        const storeurl = "/api/v1/stores/index";
+        const storeurl = `/api/v1/stores/index/${cookies.get("token")}`;
         await fetch(storeurl)
         .then((res) => {
             if (res.ok) {
@@ -77,7 +79,8 @@ const Purchase = () => {
         const body = {
             name,
             price,
-            purchase_id
+            purchase_id,
+            user_token: cookies.get("token"),
         };
     
         const token = document.querySelector('meta[name="csrf-token"]').content;

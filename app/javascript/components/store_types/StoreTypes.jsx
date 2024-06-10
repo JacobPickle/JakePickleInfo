@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Cookies from 'universal-cookie';
 import Sidebar from "../Sidebar";
 
 const StoreTypes = () => {
     const navigate = useNavigate();
+    const cookies = new Cookies();
     const [stores, setStores] = useState([]);
 
     useEffect(() => {
-        const url = "/api/v1/store_types/index";
+        const url = `/api/v1/store_types/index/${cookies.get("token")}`;;
         fetch(url)
           .then((res) => {
             if (res.ok) {

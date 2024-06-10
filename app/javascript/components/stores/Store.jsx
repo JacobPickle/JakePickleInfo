@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import Cookies from 'universal-cookie';
 import Sidebar from "../Sidebar";
 
 const Store = () => {
@@ -8,6 +9,7 @@ const Store = () => {
     dayjs.extend(localizedFormat)
     const params = useParams();
     const navigate = useNavigate();
+    const cookies = new Cookies();
     const [store, setStore] = useState([]);
     const [purchases, setPurchases] = useState([]);
     const [storeTypes, setStoreTypes] = useState([]);
@@ -29,7 +31,7 @@ const Store = () => {
             .then((response) => setStore(response))
             .catch(() => navigate("/stores"));
 
-        const type_url = "/api/v1/store_types/index";
+        const type_url = `/api/v1/store_types/index/${cookies.get("token")}`;
         fetch(type_url)
             .then((res) => {
             if (res.ok) {

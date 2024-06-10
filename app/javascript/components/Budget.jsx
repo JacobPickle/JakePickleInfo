@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Cookies from 'universal-cookie';
 import Sidebar from "./Sidebar";
 import PurchaseList from "./purchases/PurchaseList";
 
@@ -7,6 +8,7 @@ const Home = () => {
     const [budget, setBudget] = useState([]);
     const [weeks, setWeeks] = useState([]);
     const [totalSpending, setTotalSpending] = useState([]);
+    const cookies = new Cookies();
 
     useEffect(() => {
         getSettings();
@@ -49,7 +51,7 @@ const Home = () => {
         })
         .catch(() => useNavigate("/"));
 
-        const total_spent_url = `/api/v1/purchases/recent_total`;
+        const total_spent_url = `/api/v1/purchases/recent_total/${cookies.get("token")}`;
         await fetch(total_spent_url)
         .then((response) => {
             if (response.ok) 

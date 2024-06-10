@@ -5,46 +5,7 @@ import Sidebar from "./Sidebar";
 
 const Home = () => {   
     const navigate = useNavigate();
-    const [users, setUsers] = useState([]);
     const cookies = new Cookies();
-
-  /*   useEffect(() => {
-        const url = "/api/v1/users/index";
-        fetch(url)
-          .then((res) => {
-            if (res.ok) {
-              return res.json();
-            }
-            throw new Error("Network response was not ok.");
-          })
-          .then((res) => setUsers(res))
-          .catch(() => navigate("/"));
-    }, []); */
-
-    useEffect(() => {
-        if(cookies.get("token")) {
-            const url = `/api/v1/users/index_by_token/${cookies.get("token")}`;
-            fetch(url)
-              .then((res) => {
-                if (res.ok) {
-                  return res.json();
-                }
-                throw new Error("Network response was not ok.");
-              })
-              .then((res) => setUsers(res))
-              .catch(() => navigate("/"));
-        }   
-    }, []);
-    
-    const allUsers = users.map((user, index) => (
-        <li key={index}>
-            <div>
-                <Link to={`/store/${user.id}`} className="list-group-item">
-                    {user.username}
-                </Link>
-            </div>
-        </li>
-    ));
 
     function logout (event) {
         cookies.remove("username");
@@ -88,9 +49,6 @@ const Home = () => {
                             </tr>
                         </tbody>
                     </table>
-                    <ul className="list-group">
-                        {allUsers}
-                    </ul>
                 </main>
             </div>
         </>

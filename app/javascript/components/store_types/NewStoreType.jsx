@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Cookies from 'universal-cookie';
 import Sidebar from "../Sidebar";
 
 const NewStoreType = () => {
     const navigate = useNavigate();
+    const cookies = new Cookies();
     const [name, setName] = useState("");
     
     const onChange = (event, setFunction) => {
@@ -18,7 +20,8 @@ const NewStoreType = () => {
             return;
     
         const body = {
-            name
+            name,
+            user_token: cookies.get("token"),
         };
     
         const token = document.querySelector('meta[name="csrf-token"]').content;
