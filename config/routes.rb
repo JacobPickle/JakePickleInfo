@@ -26,7 +26,6 @@ Rails.application.routes.draw do
       get 'settings/weeks', to: 'settings#weeks'
       get 'settings/budget', to: 'settings#budget'
       post 'settings/create'
-      get 'users/index'
       get 'users/index_by_token/:user_token', to: 'users#index_by_token'
       get 'users/show/:username/:password', to: 'users#show'
       get 'users/show_budgeting_preferences/:user_token', to: 'users#show_budgeting_preferences'

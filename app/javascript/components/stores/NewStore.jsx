@@ -99,7 +99,7 @@ const NewStore = () => {
                             </button>
                         </div>
                         <div>
-                            <Link to="/" className="btn btn-secondary rounded-pill">
+                            <Link to="/Budget" className="btn btn-secondary rounded-pill">
                                 Home
                             </Link>
                         </div>

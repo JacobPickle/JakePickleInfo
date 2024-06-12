@@ -1,11 +1,6 @@
 module Api
   module V1
     class UsersController < ApplicationController
-      def index
-        users = User.all.order(created_at: :desc)
-        render json: users
-      end
-
       def index_by_token
         users = User.where(token: params[:user_token]).order(created_at: :desc)
         render json: users
