@@ -27,9 +27,11 @@ const Home = () => {
                                     <div style={{width: 400}}>I was a software engineer at Cerner for 3 years, working on the Orders and Plans team we owned the section of the application doctors would use to place, review, and modify orders for medications or test. Recently I have been working on personal projects, including this website, they can be found along with my resume via the sidebar.</div>
                                     <br />
                                     <div style={{width: 400}}>On a more personal note I enjoy spending the day photographing flowers at the park with my wife then coming home to spend the evening doing some minature painting or playing tabletop games.</div>
+                                    <br />
+                                    <div style={{width: 400}}>Combining some of my hobbies this photo of union station in Kansas City was taken on 1950's Kodak Brownie, developed, scanned, and now lives in an Amazon S3 bucket!</div>
                                 </td>
                                 <td style={{paddingLeft: 50}} className="organization">
-                                    <img src="https://hips.hearstapps.com/pop.h-cdn.co/assets/16/42/2048x1365/gallery-1476810195-gettyimages-166633559.jpg?resize=640:*" />  
+                                    <img src="https://myawsbucket-pickle.s3.amazonaws.com/R1-07463-0009.JPG" width="500" height="500" />  
                                 </td>
                                 <td className="organization">
                                     {!cookies.get("token") ?
