@@ -3,9 +3,9 @@
 # Change these
 server '143.198.145.223', port: 22, roles: %i[web app db], primary: true
 
-set :repo_url, 'git@github.com:JacobPickle/BudgetBuddy.git'
+set :repo_url, 'git@github.com:JacobPickle/JakePickleInfo.git'
 set :branch, ENV['BRANCH'] if ENV['BRANCH']
-set :application,     'BudgetBuddy'
+set :application,     'JakePickleInfo'
 set :user,            'deploy'
 set :puma_threads,    [4, 16]
 set :puma_workers,    0
@@ -18,11 +18,11 @@ set :stage,           :production
 set :rails_env,       'production'
 set :deploy_via,      :remote_cache
 set :deploy_to,       "/home/#{fetch(:user)}/apps/#{fetch(:application)}"
-set :puma_bind,       'unix:///home/deploy/apps/BudgetBuddy/shared/tmp/sockets/puma.sock'
-set :puma_state,      '/home/deploy/apps/BudgetBuddy/shared/tmp/pids/puma.state'
-set :puma_pid,        '/home/deploy/apps/BudgetBuddy/shared/tmp/pids/puma.pid'
-set :puma_access_log, '/home/deploy/apps/BudgetBuddy/current/log/puma.access.log'
-set :puma_error_log,  '/home/deploy/apps/BudgetBuddy/current/log/puma.error.log'
+set :puma_bind,       'unix:///home/deploy/apps/JakePickleInfo/shared/tmp/sockets/puma.sock'
+set :puma_state,      '/home/deploy/apps/JakePickleInfo/shared/tmp/pids/puma.state'
+set :puma_pid,        '/home/deploy/apps/JakePickleInfo/shared/tmp/pids/puma.pid'
+set :puma_access_log, '/home/deploy/apps/JakePickleInfo/current/log/puma.access.log'
+set :puma_error_log,  '/home/deploy/apps/JakePickleInfo/current/log/puma.error.log'
 set :ssh_options,     { forward_agent: true, user: fetch(:user), keys: %w[~/.ssh/id_rsa.pub] }
 set :puma_preload_app, true
 set :puma_worker_timeout, nil
