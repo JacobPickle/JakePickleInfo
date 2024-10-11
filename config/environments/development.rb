@@ -68,6 +68,6 @@ Rails.application.configure do
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
 
-  config.hosts << "http://budgetbuddy.pro"
-  config.hosts << "budgetbuddy.pro"
+  config.hosts << "http://jakepickle.info"
+  config.hosts << "jakepickle.info"
 end
