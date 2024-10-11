@@ -11,10 +11,10 @@ const Resume = () => {
                 <div><small>PickleJMP@gmail.com</small></div>
                 <br></br>
                 <h5>Experience</h5>
-                <b>Personal Project: BudgetBuddy</b>
+                <b>Personal Project: this website</b>
                 <div>
-                    <div>I created BudgetBuddy to track my grocery spending and get some experience with Ruby on Rails and React.</div>
-                    <div>Code Available Here: <a href="https://github.com/JacobPickle/BudgetBuddy">https://github.com/JacobPickle/BudgetBuddy</a></div>
+                    <div>I started this project to track my grocery spending and get some experience with Ruby on Rails and React.</div>
+                    <div>Code Available Here: <a href="https://github.com/JacobPickle/JakePickleInfo">https://github.com/JacobPickle/JakePickleInfo</a></div>
                     <div>Technologies: Ruby on Rails, React, Bootstrap, Capistrano</div>
                 </div>
                 <ul>
