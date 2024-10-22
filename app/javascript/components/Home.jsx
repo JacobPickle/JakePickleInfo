@@ -24,11 +24,11 @@ const Home = () => {
                                 <td className="organization">
                                     <h2>Jake Pickle</h2>
                                     <h5>Software Engineer</h5>
-                                    <div style={{width: 400}}>I was a software engineer at Cerner for 3 years, working on the Orders and Plans team we owned the section of the application doctors would use to place, review, and modify orders for medications or test. Recently I have been working on personal projects, including this website, they can be found along with my resume via the sidebar.</div>
+                                    <div style={{width: 400}}>I ventured into the world of software engineering with my high school programming course, and immediately loved the challenge. After graduation and a few internships at Cerner, I went there full-time for 3 years. I worked on the Orders & Plans team, where our software was used to help doctors place, review, and modify test and medication orders. Since my departure from Cerner, I’ve been working on professionally developing my skills and staying up to date by learning new technologies, like AWS, that I didn’t get a chance to use at Cerner. Notably, I’ve worked on this website, more info about this can be found on the sidebar under my resume.</div>
                                     <br />
-                                    <div style={{width: 400}}>On a more personal note I enjoy spending the day photographing flowers at the park with my wife then coming home to spend the evening doing some minature painting or playing tabletop games.</div>
+                                    <div style={{width: 400}}>In my personal life, I’ve been enjoying the process of learning photography, both film and digital, as well as assembling & painting miniatures to use in tabletop games I play with my wife and friends.</div>
                                     <br />
-                                    <div style={{width: 400}}>Combining some of my hobbies this photo of union station in Kansas City was taken on 1950's Kodak Brownie, developed, scanned, and now lives in an Amazon S3 bucket!</div>
+                                    <div style={{width: 400}}>I’ve combined my hobbies and skills here, where this film photo of Union Station in Kansas City that I’ve taken on a 1950’s Kodak Brownie (my grandma’s camera!) was developed & scanned locally in KC, and now lives in an Amazon S3 bucket on my site!</div>
                                 </td>
                                 <td style={{paddingLeft: 50}} className="organization">
                                     <img src="https://myawsbucket-pickle.s3.amazonaws.com/R1-07463-0009.JPG" width="500" height="500" />  

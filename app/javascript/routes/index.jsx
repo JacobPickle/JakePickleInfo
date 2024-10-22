@@ -18,6 +18,7 @@ import StoreType from "../components/store_types/StoreType"
 import NewStoreType from "../components/store_types/NewStoreType"
 import NewUser from "../components/users/NewUser"
 import Login from "../components/users/Login"
+import Album from "../components/Album"
 
 export default (
   <Router>
@@ -40,6 +41,7 @@ export default (
       <Route path="/settings/" element={<Settings />} />
       <Route path="/user" element={<NewUser />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/album" element={<Album />} />
     </Routes>
   </Router>
 );

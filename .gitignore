@@ -37,3 +37,6 @@
 
 # Ignore coverage report
 /coverage/*
+
+# Ignore photos
+/app/assets/images/*
