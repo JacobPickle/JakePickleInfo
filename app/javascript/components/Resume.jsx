@@ -11,7 +11,7 @@ const Resume = () => {
                 <div><small>PickleJMP@gmail.com</small></div>
                 <br></br>
                 <h5>Certifications</h5>
-                <b>AWS Certified Cloud Practitioner - 11/2024</b>
+                <div>AWS Certified Cloud Practitioner - 11/2024</div>
                 <h5>Experience</h5>
                 <b>Personal Project: this website</b>
                 <div>
