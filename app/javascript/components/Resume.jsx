@@ -12,6 +12,7 @@ const Resume = () => {
                 <br></br>
                 <h5>Certifications</h5>
                 <div>AWS Certified Cloud Practitioner - 11/2024</div>
+                <br></br>
                 <h5>Experience</h5>
                 <b>Personal Project: this website</b>
                 <div>
@@ -24,6 +25,18 @@ const Resume = () => {
                     <li>Used Bootstrap to make the site more user friendly</li>
                     <li>Deployment to a remote server with capistrano</li>
                     <li>Used Figma to brainstorm a design to learn how to translate a given design to a matching frontend</li>
+                </ul>
+                <b>Micro Center</b>
+                <div><small>Jan 2025 - Present</small></div>
+                <div>Service Technican</div>
+                <ul>
+                    <li>Spoke directly with customers to understand their non-technical problems and determine what technical solution we could offer</li>
+                    <li>Identified, diagnosed, and documented hardware failures or software problems on both desktops and laptops</li>
+                    <li>Performed repairs to get customer computers back to good working order</li>
+                    <li>Assembled custom computers for customers with their selected hardware</li>
+                    <li>Communicated with customers face to face, over the phone, and via text to ensure they were up to date during the repair process</li>
+                    <li>Operated a cash till</li>
+                    <li>Certified to work on offical warranty repairs for many companies including: Apple, Lenovo, Dell, and HP</li>
                 </ul>
                 <b>Cerner</b>
                 <div><small>Jun 2019 - Oct 2022</small></div>
