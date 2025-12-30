@@ -5,7 +5,8 @@ require 'rails_helper'
 describe Api::V1::StoresController do
   describe 'POST create' do
     before(:each) do
-      post :create, params: { name: 'Aldi' }
+      user = create :user
+      post :create, params: { name: 'Aldi', user_token: user.token }
     end
 
     it 'returns a success response' do
@@ -34,13 +35,15 @@ describe Api::V1::StoresController do
   end
 
   describe 'GET index' do
-    before(:each) do
-      create :store, name: 'Aldi'
-      create :store, name: 'Hyvee'
+    subject(:user) do
+      user = create :user
+      create(:store, name: 'Aldi', user:)
+      create(:store, name: 'Hyvee', user:)
+      user
     end
 
     before(:each) do
-      get :index
+      get :index, params: { user_token: user.token }
     end
 
     it 'returns a success response' do

@@ -5,8 +5,9 @@ require 'rails_helper'
 describe Api::V1::PurchasesController do
   describe 'POST create' do
     before(:each) do
-      store = create :store, name: 'Hyvee'
-      post :create, params: { purchase_date: Date.current, total: 5.99, store_id: store.id }
+      store = create :store
+      post :create,
+           params: { purchase_date: Date.current, total: 5.99, store_id: store.id, user_token: store.user.token }
     end
 
     it 'returns a success response' do
@@ -26,7 +27,8 @@ describe Api::V1::PurchasesController do
 
   describe 'GET purchase' do
     subject(:purchase) do
-      store = create :store, name: 'Hyvee'
+      user = create :user, username: 'testuser', weeks_preference: 4, budget_preference: 200, password: 'pass'
+      store = create :store, name: 'Hyvee', user_id: user.id
       create :purchase, purchase_date: Date.current, total: 5.99, store_id: store.id
     end
 
@@ -51,7 +53,8 @@ describe Api::V1::PurchasesController do
 
   describe 'GET purchase by store id' do
     subject(:purchase) do
-      store = create :store, name: 'Hyvee'
+      user = create :user, username: 'testuser', weeks_preference: 4, budget_preference: 200, password: 'pass'
+      store = create :store, name: 'Hyvee', user_id: user.id
       create :purchase, purchase_date: Date.current, total: 5.99, store_id: store.id
     end
 
@@ -75,20 +78,22 @@ describe Api::V1::PurchasesController do
   end
 
   describe 'GET index' do
+    subject(:user) do
+      user = create :user
+      create(:purchase, user:)
+      create(:purchase, user:)
+      user
+    end
+
     before(:each) do
-      store1 = create :store, name: 'Hyvee'
-      store2 = create :store, name: 'Aldi'
-      create :purchase, purchase_date: Date.current, total: 2.57, store_id: store1.id
-      create :purchase, purchase_date: Date.current, total: 1.99, store_id: store2.id
+      get :index, params: { user_token: user.token }
     end
 
     it 'returns a success response' do
-      get :index
       expect(response).to have_http_status(:success)
     end
 
     it 'returns the correct number of purchases' do
-      get :index
       response_purchases = response.parsed_body
       expect(response_purchases.size).to eq 2
     end
@@ -96,7 +101,8 @@ describe Api::V1::PurchasesController do
 
   describe 'DELETE destroy' do
     subject(:purchase) do
-      store = create :store, name: 'Hyvee'
+      user = create :user, username: 'testuser', weeks_preference: 4, budget_preference: 200, password: 'pass'
+      store = create :store, name: 'Hyvee', user_id: user.id
       create :purchase, purchase_date: Date.current, total: 5.99, store_id: store.id
     end
 
